@@ -1,0 +1,27 @@
+Non functional requirements:
+- up to the team
+- having implicit priority in our mind (to discuss within the group)
+
+UML use case
+- events flow are missing
+- exception flow of activity are missing
+
+UML sequence class
+- objects has to appear in the class diagram
+
+
+
+
+
+Problem frames:
+- at least one arrow in requirement lines
+- arrow from requir to domain: we expose the requirements for REQUIRED BEHAVIOUR
+- split more the problems when there are too much actions
+basic diagrams with simple tasks
+- problem frame diagram : domain is written (little C)
+Y, C or E
+- arrow: requirement is going to change (NEVER 2 ARROWS)
+
+
+
+! = control
