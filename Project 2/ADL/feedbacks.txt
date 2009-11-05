@@ -1,0 +1,37 @@
+http://en.wikipedia.org/wiki/Architecture_description_language
+
+ACME/ADML: +++
+http://www-2.cs.cmu.edu/~acme/
+http://www.cs.cmu.edu/~able/
+http://www.cs.cmu.edu/~acme/pub/xAcme/
+BEST furniture
+Not a lot of examples
+software (Win, Mac & Linux) --> FREE
+
+Abacus: ++
+http://en.wikipedia.org/wiki/Avolution
+http://www.avolution.com.au/products.html
+http://www.youtube.com/Avolution
+HALF furnished (movies, tuto, etc.) but not a lot of papers --
+professional & enterprises ---
+software (30 day trial) --> NOT FREE ---
+
+Rapide: ++
+BEST furnished (papers)
+BEST example furniture
+software (Linux & Solaris) --> FREE BUT NOT ACCESSIBLE
+
+Unicon: +
+furnished
+software not available
+
+Wright: +
+http://www-2.cs.cmu.edu/afs/cs/project/able/www/wright/index.html
+not too much documents
+WELL furnished with internet
+no software --
+
+AADL: +
+http://en.wikipedia.org/wiki/Architecture_Analysis_%26_Design_Language
+http://aadl.info --> NOT WORKING
+
