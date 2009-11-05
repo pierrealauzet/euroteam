@@ -1,0 +1,23 @@
+Style SharedData
+
+Connector SharedData3
+    Role Initializer = set -> A
+    where {
+	A = set -> A |~| get -> A |~| Tick
+    }
+
+    Role User = set -> User |~| get -> User |~| Tick
+
+    Glue = Initializer.set -> Continue [] User.set -> Continue [] Tick
+    where {
+	Continue = Initializer.set -> Continue
+		[] User.set -> Continue
+		[] Initializer.get -> Continue
+		[] User.get -> Continue
+		[] Tick
+    }
+
+
+Constraints
+    // no constraints
+End Style

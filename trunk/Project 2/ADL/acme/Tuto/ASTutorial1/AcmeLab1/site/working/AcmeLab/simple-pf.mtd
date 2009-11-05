@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AcmeModel>
+  <system name="simple-demo">
+    <userdata key="vis-information">
+      <data rotation="0.0"/>
+    </userdata>
+    <userdata key="connection-patterns">
+      <data>
+        <portConnectionRule connector="Connector" name="">
+          <association componentType="Component" portName="p" portType="Port" roleName="r" roleType="Role"/>
+          <association componentType="Component" portName="p" portType="Port" roleName="r" roleType="Role"/>
+        </portConnectionRule>
+      </data>
+    </userdata>
+    <component name="Package">
+      <userdata key="vis-information">
+        <data rotation="0.0" x="377" y="66"/>
+      </userdata>
+      <port name="output">
+        <userdata key="vis-information">
+          <data category="port" relPosX="50" relPosY="-1" rotation="0.0" x="427" y="65"/>
+        </userdata>
+      </port>
+      <port name="input">
+        <userdata key="vis-information">
+          <data category="port" relPosX="-50" relPosY="-1" rotation="0.0" x="327" y="65"/>
+        </userdata>
+      </port>
+    </component>
+    <component name="Compress">
+      <userdata key="vis-information">
+        <data rotation="0.0" x="141" y="65"/>
+      </userdata>
+      <port name="output">
+        <userdata key="vis-information">
+          <data category="port" relPosX="50" relPosY="-1" rotation="0.0" x="191" y="64"/>
+        </userdata>
+      </port>
+      <port name="input">
+        <userdata key="vis-information">
+          <data category="port" relPosX="-50" relPosY="-1" rotation="0.0" x="91" y="64"/>
+        </userdata>
+      </port>
+    </component>
+    <connector name="Pipe10">
+      <userdata key="vis-information">
+        <data rotation="0.0" x="247" y="64"/>
+      </userdata>
+      <role name="source">
+        <userdata key="vis-information">
+          <data category="role" rotation="0.012499349019361679" x="327" y="65"/>
+        </userdata>
+      </role>
+      <role name="sink">
+        <userdata key="vis-information">
+          <data category="role" rotation="6.283185307179586" x="191" y="64"/>
+        </userdata>
+      </role>
+    </connector>
+  </system>
+</AcmeModel>

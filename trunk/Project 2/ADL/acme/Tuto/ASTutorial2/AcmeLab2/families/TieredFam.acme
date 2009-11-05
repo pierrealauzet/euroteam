@@ -1,0 +1,114 @@
+Family TieredFam = {
+
+    Port Type remoteUseT extends useT with {
+
+        Property isRemote : boolean = true;
+        rule rule1 = invariant forall r : Role in self.ATTACHEDROLES | exists t in {userT,remoteUserT} | declaresType(r, t) <<  label : string = "All attached roles are users."; errMsg : string = "Detected non-user attached role(s)!"; >> ;
+
+    }
+    Port Type provideT = {
+        rule rule0 = heuristic size(self.ATTACHEDROLES) >= 1 <<  label : string = "This port has attachment(s)."; errMsg : string = "This port dangles!"; >> ;
+
+    }
+    Port Type localUseT extends useT with {
+
+        Property isRemote : boolean = false;
+        rule rule1 = invariant forall r : Role in self.ATTACHEDROLES | declaresType(r, localUserT) <<  label : string = "All attached roles are remote."; errMsg : string = "Detected non-remote attached role(s)!"; >> ;
+
+    }
+    Role Type localUserT extends userT with {
+
+        Property isRemote : boolean = false;
+
+    }
+    Connector Type LocalConnT extends CallReturnConnT with {
+        rule rule2 = invariant forall r in self.ROLES | exists t in {localProviderT,localUserT} | declaresType(r, t) <<  label : string = "All roles are of types localProviderT or localUserT."; errMsg : string = "Detected unexpected role types!"; >> ;
+        Role callee : providerT = new providerT extended with {
+
+        }
+        Role caller : userT = new userT extended with {
+
+        }
+
+    }
+    Role Type localProviderT extends providerT with {
+
+        Property isRemote : boolean = false;
+
+    }
+    Role Type providerT = {
+        rule rule0 = invariant size(self.ATTACHEDPORTS) >= 1 <<  label : string = "This role has an attachment."; errMsg : string = "The role dangles!"; >> ;
+        rule rule1 = heuristic  ! size(self.ATTACHEDPORTS) > 1 <<  label : string = "This role has no more than one attachment."; errMsg : string = "This role is attached to more than one port!"; >> ;
+
+    }
+    Port Type remoteProvideT extends provideT with {
+
+        Property isRemote : boolean = true;
+        rule rule1 = invariant forall r : Role in self.ATTACHEDROLES | exists t in {providerT,remoteProviderT} | declaresType(r, t) <<  label : string = "All attached roles are providers."; errMsg : string = "Detected non-provider attached role(s)!"; >> ;
+
+    }
+    Role Type remoteProviderT extends providerT with {
+
+        Property isRemote : boolean = true;
+        rule rule1 = invariant forall p : Port in self.ATTACHEDPORTS | declaresType(p, remoteProvideT) <<  label : string = "All attached ports are remote."; errMsg : string = "Detected non-remote attached port(s)!"; >> ;
+
+    }
+    Connector Type RMIConnT extends CallReturnConnT with {
+        rule rule2 = invariant forall r in self.ROLES | exists t in {remoteProviderT,remoteUserT} | declaresType(r, t) <<  vis-roles : boolean = true; label : string = "All roles are of types remoteProviderT or remoteUserT."; errMsg : string = "Detected unexpected role types!"; >> ;
+        Role callee : remoteProviderT = new remoteProviderT extended with {
+
+            Property isRemote : boolean = true;
+
+        }
+        Role caller : remoteUserT = new remoteUserT extended with {
+
+            Property isRemote : boolean = true;
+
+        }
+
+    }
+    Role Type remoteUserT extends userT with {
+
+        Property isRemote : boolean = true;
+        rule rule1 = invariant forall p : Port in self.ATTACHEDPORTS | declaresType(p, remoteUseT) <<  label : string = "All attached ports are remote."; errMsg : string = "Detected non-remote attached port(s)!"; >> ;
+
+    }
+    Role Type userT = {
+        rule rule0 = invariant size(self.ATTACHEDPORTS) >= 1 <<  label : string = "This role has an attachment."; errMsg : string = "The role dangles!"; >> ;
+        rule rule1 = heuristic  ! size(self.ATTACHEDPORTS) > 1 <<  label : string = "This role has no more than one attachment."; errMsg : string = "This role is attached to more than one port! Is this intended?"; >> ;
+
+    }
+    Port Type useT = {
+        rule rule0 = heuristic size(self.ATTACHEDROLES) >= 1 <<  label : string = "This port has attachment(s)."; errMsg : string = "This port dangles!"; >> ;
+
+    }
+    Component Type ClientNodeT extends TierNodeT with {
+
+    }
+    Component Type TierNodeT = {
+
+        Property host : string;
+
+        Property allowShareHost : boolean <<  default : boolean = true; >> ;
+
+    }
+    Component Type DataNodeT extends TierNodeT with {
+
+    }
+    Connector Type CallReturnConnT = {
+
+        Property blocking : boolean <<  default : boolean = true; >> ;
+        rule rule1 = invariant size(self.ROLES) >= 2 <<  label : string = "The connector has at least two roles."; errMsg : string = "The connector does NOT have two roles!"; >> ;
+        rule rule2 = heuristic  ! size(self.ROLES) > 2 <<  label : string = "The connector has no more than two roles."; errMsg : string = "The connector has more than two roles! Is this intended?"; >> ;
+
+    }
+    Port Type localProvideT extends provideT with {
+
+        Property isRemote : boolean = false;
+        rule rule1 = invariant forall r : Role in self.ATTACHEDROLES | declaresType(r, localProviderT) <<  label : string = "All attached roles are remote."; errMsg : string = "Detected non-remote attached role(s)!"; >> ;
+
+    }
+    rule rule16 = invariant forall conn : Connector in self.CONNECTORS | satisfiesType(conn, CallReturnConnT) <<  label : string = "All connectors satisfy call-return type."; errMsg : string = "At least one connector is NOT call-return!"; >> ;
+    rule rule19 = invariant forall n1 : TierNodeT in self.COMPONENTS | forall n2 : TierNodeT in self.COMPONENTS | connected(n1, n2) -> n1.tier == logic OR n2.tier == logic <<  label : string = "One in every two connected tier component is in the logic tier."; errMsg : string = "Detected two connected tier components neither of which is in the logic tier!"; >> ;
+}
+

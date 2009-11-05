@@ -1,0 +1,93 @@
+channel close, read, write, readEOF
+
+
+-- Style DataFiles
+
+-- Component DataFile1
+    DF1_Port_File = Action1 [] Exit1
+	Exit1 = close -> SKIP
+	Action1 = (read -> Action1) [] (write -> Action1)
+
+
+-- Component DataFile2
+    DF2_Port_File = Action2 [] Exit2
+	Exit2 = close -> SKIP
+	Action2 = (read -> DF2_Port_File) [] (write -> DF2_Port_File)
+
+-- Component ReadOneFilter
+    P_ReadOne = read -> close -> SKIP [] readEOF -> close -> SKIP
+    P_WriteOne = write -> close -> SKIP
+
+
+
+-- Connector Pipe
+    Role_Writer = W
+	W = (write -> W) |~| (close -> SKIP)
+
+    Role_Reader = R
+	R = DoRead |~| ExitOnly
+	DoRead = (read -> R) [] (readEOF -> ExitOnly)
+	ExitOnly = close -> SKIP
+
+    Glue = (Writer.write -> Glue) [] (Reader.read -> Glue)
+	[] (Writer.close -> ReadOnly) [] (Reader.close -> WriteOnly)
+
+	ReadOnly = (Reader.read -> ReadOnly)
+		[] (Reader.readEOF -> Reader.close -> SKIP)
+		[] (Reader.close -> SKIP)
+	WriteOnly = (Writer.write -> WriteOnly) [] (Writer.close -> SKIP)
+
+
+
+-- first compatibility test    (Reader role w/ DataFile1 port)
+    Role_Reader_Plus     = Role_Reader [| {write} |] SKIP
+    DF1_Port_Reader_Plus = DF1_Port_File [| {readEOF} |] SKIP
+    det_Role_Reader      = det_R
+	det_R = det_DoRead [] det_ExitOnly
+	det_DoRead = (read -> det_R) [] (readEOF -> det_ExitOnly)
+	det_ExitOnly = close -> SKIP
+    DF1_Port_Reader_p_D  = 
+	DF1_Port_Reader_Plus [| {read,close,readEOF,write} |] det_Role_Reader
+
+    assert Role_Reader_Plus [FD= DF1_Port_Reader_p_D
+
+
+-- second compatibility test   (Reader role w/ DataFile2 port)
+    DF2_Port_Reader_Plus = DF2_Port_File [| {readEOF} |] SKIP
+    DF2_Port_Reader_p_D  = 
+	DF2_Port_Reader_Plus [| {read,close,readEOF,write} |] det_Role_Reader
+
+    assert Role_Reader_Plus [FD= DF2_Port_Reader_p_D
+
+
+-- third compatibility test    (Writer role w/ DataFile1 port)
+    Role_Writer_Plus     = Role_Writer [| {read} |] SKIP
+    DF1_Port_Writer_Plus = DF1_Port_File
+    det_Role_Writer      = det_W
+	det_W = (write -> det_W) [] (close -> SKIP)
+    DF1_Port_Writer_p_D  =
+	DF1_Port_Writer_Plus [| {read,write,close} |] det_Role_Writer
+
+    assert Role_Writer_Plus [FD= DF1_Port_Writer_p_D
+
+
+-- fourth compatibility test   (Writer role w/ DataFile2 port)
+    DF2_Port_Writer_Plus = DF1_Port_File
+    DF2_Port_Writer_p_D  =
+	DF2_Port_Writer_Plus [| {read,write,close} |] det_Role_Writer
+
+    assert Role_Writer_Plus [FD= DF2_Port_Writer_p_D
+
+
+
+-- fifth compatibility text    (Writer role w/ WriteOne port)
+    WriteOne_p_D = P_WriteOne [| {write,close} |] det_Role_Writer
+
+    assert Role_Writer [FD= WriteOne_p_D
+
+
+
+-- sixth compatibility test    (Reader role w/ ReadOne port)
+    ReadOne_p_D = P_ReadOne [| {read,readEOF,close} |] det_Role_Reader
+
+    assert Role_Reader [FD= ReadOne_p_D    

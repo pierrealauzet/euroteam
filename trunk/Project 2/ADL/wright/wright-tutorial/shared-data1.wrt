@@ -1,0 +1,12 @@
+Style SharedData
+
+Connector SharedData1
+    Role User1 = set -> User1 |~| get -> User1 |~| Tick
+    Role User2 = set -> User2 |~| get -> User2 |~| Tick
+
+    Glue = User1.set -> Glue [] User2.set -> Glue 
+	[] User1.get -> Glue [] User2.get -> Glue [] Tick
+
+Constraints
+    // no constraints
+End Style

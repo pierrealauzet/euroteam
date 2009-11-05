@@ -1,0 +1,13 @@
+Style ClientServer
+
+Connector CSconnector
+    Role Client = (request!x -> result?y -> Client) |~| Tick
+    Role Server = (invoke?x -> return!y -> Server) [] Tick
+
+    Glue = (Client.request?x -> Server.invoke!x -> Server.return?y ->
+	    Client.result!y -> Glue) [] Tick
+
+
+Constraints
+    // no constraints
+End Style

@@ -1,0 +1,51 @@
+Style DataFiles
+
+Component DataFile1
+    Port File = Action [] Exit
+    where {
+	Exit = close -> Tick
+	Action = read -> Action [] write -> Action
+    }
+
+    Computation = ...
+
+
+Component DataFile2
+    Port File = Action [] Exit
+    where {
+	Exit = close -> Tick
+	Action = read -> File [] write -> File
+    }
+
+    Computation = ...
+
+
+Connector Pipe
+    Role Writer = write -> Writer |~| close -> Tick
+
+    Role Reader = DoRead |~| ExitOnly
+    where {
+	DoRead = read -> Reader [] readEOF -> ExitOnly
+	ExitOnly = close -> Tick
+    }
+
+    Glue = ...
+
+End Style
+
+
+Configuration TestCompatibility
+Style DataFiles
+
+Instances
+    DF1 : DataFile1
+    DF2 : DataFile2
+    pipe1, pipe2 : Pipe
+
+Attachments
+    DF1.File as pipe1.Reader
+    DF2.File as pipe2.Reader
+    DF1.File as pipe1.Writer
+    DF2.File as pipe2.Writer
+
+End Configuration

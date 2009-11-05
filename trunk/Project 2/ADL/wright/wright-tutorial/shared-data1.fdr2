@@ -1,0 +1,57 @@
+-- FDR compression functions
+transparent diamond
+transparent normalise
+
+
+-- Wright defined processes
+channel abstractEvent
+DFA = abstractEvent -> DFA |~| SKIP
+
+quant_semi({},_) = SKIP
+quant_semi(S,PARAM) = |~| i:S @ PARAM(i) ; quant_semi(diff(S,{i}),PARAM)
+
+power_set({}) = {{}}
+power_set(S) = { union(y,{x}) | x <- S, y <- power_set(diff(S,{x}))}
+
+
+-- Style SharedData
+-- Type declarations
+-- events for abstract specification
+channel get, set
+
+
+-- Connector SharedData1
+  -- generated definitions (to split long sets)
+  
+  ALPHA_SharedData1 = {|User2.set, User2.get, User1.get, User1.set|}
+  
+  Glue = ((User1.set -> Glue) [] ((User2.set -> Glue) [] ((User1.get -> 
+        Glue) [] ((User2.get -> Glue) [] SKIP))))
+  
+  ALPHA_User1 = {set, get}
+  U1 = ((set -> U1) |~| ((get -> U1) |~| SKIP))
+  ROLEUser1 = U1
+  User1A = ROLEUser1 [[ x <- abstractEvent | x <- ALPHA_User1 ]]
+  assert DFA [FD= User1A
+  
+  ALPHA_User2 = {set, get}
+  U2 = ((set -> U2) |~| ((get -> U2) |~| SKIP))
+  ROLEUser2 = U2
+  User2A = ROLEUser2 [[ x <- abstractEvent | x <- ALPHA_User2 ]]
+  assert DFA [FD= User2A
+  
+  
+
+channel User1: {set, get}
+channel User2: {set, get}
+SharedData1 = ( (ROLEUser1[[ x <- User1.x | x <- {set, get } ]]
+       [| diff({|User1|}, {}) |]
+    (ROLEUser2[[ x <- User2.x | x <- {set, get } ]]
+       [| diff({|User2|}, {}) |]
+    Glue)) )
+SharedData1A = SharedData1 [[ x <- abstractEvent | x <- ALPHA_SharedData1
+     ]]
+assert DFA [FD= SharedData1A
+
+-- No constraints
+-- End Style

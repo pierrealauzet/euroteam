@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AcmeModel>
+  <family name="TieredFam">
+    <userdata key="connection-patterns">
+      <data>
+        <portConnectionRule connector="Connector" name="">
+          <association componentType="Component" portName="p" portType="Port" roleName="r" roleType="Role"/>
+          <association componentType="Component" portName="p" portType="Port" roleName="r" roleType="Role"/>
+        </portConnectionRule>
+      </data>
+    </userdata>
+    <port-type name="provideT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="PORT">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.DiamondVisualizationStrategy">
+              <fillColor blue="255" green="0" red="0"/>
+              <outlineColor blue="255" green="0" red="0"/>
+              <size height="10" heightResizeable="true" preserveAspectRatio="false" width="10" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="No Label" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <rotateAroundComponentCenter on="false"/>
+            <alignWithAttachedRole on="false"/>
+            <pointer orientation="Out"/>
+          </visualization>
+        </data>
+      </userdata>
+    </port-type>
+    <port-type name="localUseT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="PORT">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.OvalVisualizationStrategy">
+              <fillColor blue="0" green="0" red="255"/>
+              <outlineColor blue="0" green="0" red="255"/>
+              <size height="10" heightResizeable="true" preserveAspectRatio="false" width="10" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="No Label" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <rotateAroundComponentCenter on="false"/>
+            <alignWithAttachedRole on="false"/>
+            <pointer orientation="Out"/>
+          </visualization>
+        </data>
+      </userdata>
+    </port-type>
+    <role-type name="localUserT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="ROLE">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.OvalVisualizationStrategy">
+              <fillColor blue="255" green="255" red="255"/>
+              <outlineColor blue="0" green="0" red="255"/>
+              <size height="12" heightResizeable="true" preserveAspectRatio="false" width="12" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="No Label" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <rotateAroundConnectorCenter on="true"/>
+            <pointer orientation="Out"/>
+          </visualization>
+        </data>
+      </userdata>
+    </role-type>
+    <connector-type name="LocalConnT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="CONNECTOR">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.OvalVisualizationStrategy">
+              <fillColor blue="170" green="170" red="170"/>
+              <outlineColor blue="170" green="170" red="170"/>
+              <size height="30" heightResizeable="true" preserveAspectRatio="false" width="30" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="Static Label" value="L" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <restrictPortType allowedTypes="" on="false"/>
+            <forceRoleRoute/>
+            <defaultRoleCount value="2"/>
+            <autoCenterBinaryConnector on="false"/>
+          </visualization>
+        </data>
+      </userdata>
+    </connector-type>
+    <role-type name="localProviderT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="ROLE">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.DiamondVisualizationStrategy">
+              <fillColor blue="255" green="255" red="255"/>
+              <outlineColor blue="128" green="0" red="0"/>
+              <size height="12" heightResizeable="true" preserveAspectRatio="false" width="12" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="No Label" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <rotateAroundConnectorCenter on="true"/>
+            <pointer orientation="Out"/>
+          </visualization>
+        </data>
+      </userdata>
+    </role-type>
+    <port-type name="remoteProvideT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="PORT">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.DiamondVisualizationStrategy">
+              <fillColor blue="255" green="128" red="0"/>
+              <outlineColor blue="255" green="128" red="0"/>
+              <size height="10" heightResizeable="true" preserveAspectRatio="false" width="10" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="No Label" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <rotateAroundComponentCenter on="false"/>
+            <alignWithAttachedRole on="false"/>
+            <pointer orientation="Out"/>
+          </visualization>
+        </data>
+      </userdata>
+    </port-type>
+    <role-type name="providerT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="ROLE">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.DiamondVisualizationStrategy">
+              <fillColor blue="255" green="255" red="255"/>
+              <outlineColor blue="255" green="0" red="0"/>
+              <size height="12" heightResizeable="true" preserveAspectRatio="false" width="12" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="No Label" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <rotateAroundConnectorCenter on="true"/>
+            <pointer orientation="Out"/>
+          </visualization>
+        </data>
+      </userdata>
+    </role-type>
+    <role-type name="remoteProviderT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="ROLE">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.DiamondVisualizationStrategy">
+              <fillColor blue="255" green="255" red="255"/>
+              <outlineColor blue="255" green="128" red="0"/>
+              <size height="12" heightResizeable="true" preserveAspectRatio="false" width="12" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="No Label" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <rotateAroundConnectorCenter on="true"/>
+            <pointer orientation="Out"/>
+          </visualization>
+        </data>
+      </userdata>
+    </role-type>
+    <connector-type name="RMIConnT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="CONNECTOR">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.OvalVisualizationStrategy">
+              <fillColor blue="170" green="170" red="170"/>
+              <outlineColor blue="170" green="170" red="170"/>
+              <size height="30" heightResizeable="true" preserveAspectRatio="false" width="30" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="Static Label" value="R" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <restrictPortType allowedTypes="" on="false"/>
+            <forceRoleRoute/>
+            <defaultRoleCount value="2"/>
+            <autoCenterBinaryConnector on="false"/>
+          </visualization>
+        </data>
+      </userdata>
+    </connector-type>
+    <role-type name="remoteUserT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="ROLE">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.OvalVisualizationStrategy">
+              <fillColor blue="255" green="255" red="255"/>
+              <outlineColor blue="0" green="0" red="128"/>
+              <size height="12" heightResizeable="true" preserveAspectRatio="false" width="12" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="No Label" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <rotateAroundConnectorCenter on="true"/>
+            <pointer orientation="Out"/>
+          </visualization>
+        </data>
+      </userdata>
+    </role-type>
+    <role-type name="userT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="ROLE">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.OvalVisualizationStrategy">
+              <fillColor blue="255" green="255" red="255"/>
+              <outlineColor blue="64" green="64" red="128"/>
+              <size height="12" heightResizeable="true" preserveAspectRatio="false" width="12" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="No Label" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <rotateAroundConnectorCenter on="true"/>
+            <pointer orientation="Out"/>
+          </visualization>
+        </data>
+      </userdata>
+    </role-type>
+    <port-type name="useT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="PORT">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.OvalVisualizationStrategy">
+              <fillColor blue="0" green="0" red="128"/>
+              <outlineColor blue="0" green="0" red="128"/>
+              <size height="10" heightResizeable="true" preserveAspectRatio="false" width="10" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="No Label" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <rotateAroundComponentCenter on="false"/>
+            <alignWithAttachedRole on="false"/>
+            <pointer orientation="Out"/>
+          </visualization>
+        </data>
+      </userdata>
+    </port-type>
+    <component-type name="ClientNodeT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="COMPONENT">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.RectangleVisualizationStrategy">
+              <fillColor blue="255" green="255" red="0"/>
+              <outlineColor blue="0" green="0" red="0"/>
+              <size height="50" heightResizeable="true" preserveAspectRatio="false" width="100" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="Acme Identifier" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <restrictPortType allowedTypes="" on="false"/>
+            <forcePortPlacement on="true"/>
+            <resizeToFitPorts on="false"/>
+          </visualization>
+        </data>
+      </userdata>
+    </component-type>
+    <component-type name="DataNodeT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="COMPONENT">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.RectangleVisualizationStrategy">
+              <fillColor blue="0" green="255" red="0"/>
+              <outlineColor blue="0" green="0" red="0"/>
+              <size height="50" heightResizeable="true" preserveAspectRatio="false" width="100" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="Acme Identifier" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <restrictPortType allowedTypes="" on="false"/>
+            <forcePortPlacement on="true"/>
+            <resizeToFitPorts on="false"/>
+          </visualization>
+        </data>
+      </userdata>
+    </component-type>
+    <component-type name="TierNodeT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="COMPONENT">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.RectangleVisualizationStrategy">
+              <fillColor blue="128" green="255" red="255"/>
+              <outlineColor blue="0" green="0" red="0"/>
+              <size height="50" heightResizeable="true" preserveAspectRatio="false" width="100" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="10" source="Acme Identifier" vertAlign="Default" wordwrap="false">
+              <labelColor blue="0" green="0" red="0"/>
+            </label>
+            <font bold="false" height="10" italics="false" name="Arial"/>
+            <restrictPortType allowedTypes="" on="false"/>
+            <forcePortPlacement on="true"/>
+            <resizeToFitPorts on="false"/>
+          </visualization>
+        </data>
+      </userdata>
+    </component-type>
+    <port-type name="localProvideT">
+      <userdata key="element-visualization">
+        <data>
+          <visualization hideFromPalette="false" type="PORT">
+            <shape direction="East" outlineStyle="Solid" outlineWidth="1" replicate="false" visualizationStrategyKey="org.acmestudio.ui.DiamondVisualizationStrategy">
+              <fillColor blue="128" green="0" red="0"/>
+              <outlineColor blue="128" green="0" red="0"/>
+              <size height="10" heightResizeable="true" preserveAspectRatio="false" width="10" widthResizeable="true"/>
+            </shape>
+            <label horizAlign="Center" margin="0" source="No Label" vertAlign="Center" wordwrap="false">
+              <labelColor blue="255" green="255" red="255"/>
+            </label>
+            <font bold="false" height="8" italics="false" name="Arial"/>
+            <rotateAroundComponentCenter on="false"/>
+            <alignWithAttachedRole on="false"/>
+            <pointer orientation="Out"/>
+          </visualization>
+        </data>
+      </userdata>
+    </port-type>
+    <system name="prototype">
+      <userdata key="vis-information">
+        <data rotation="0.0"/>
+      </userdata>
+      <userdata key="connection-patterns">
+        <data>
+          <portConnectionRule connector="Connector" name="">
+            <association componentType="Component" portName="p" portType="Port" roleName="r" roleType="Role"/>
+            <association componentType="Component" portName="p" portType="Port" roleName="r" roleType="Role"/>
+          </portConnectionRule>
+        </data>
+      </userdata>
+    </system>
+  </family>
+</AcmeModel>
