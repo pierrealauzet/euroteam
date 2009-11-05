@@ -1,0 +1,25 @@
+Style PipeConn
+
+Connector Pipe
+    Role Writer = write -> Writer |~| close -> Tick
+
+    Role Reader = DoRead |~| ExitOnly
+    where {
+	DoRead = read -> Reader [] readEOF -> ExitOnly
+	ExitOnly = close -> Tick
+    }
+
+    Glue = Writer.write -> Glue [] Reader.read -> Glue
+	[] Writer.close -> ReadOnly [] Reader.close -> WriteOnly
+    where {
+	ReadOnly = Reader.read -> ReadOnly
+		[] Reader.readEOF -> Reader.close -> Tick
+		[] Reader.close -> Tick
+	WriteOnly = Writer.write -> WriteOnly [] Writer.close -> Tick
+    }
+
+
+
+Constraints
+    // no constraints
+End Style

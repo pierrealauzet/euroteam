@@ -1,0 +1,36 @@
+channel abstractEvent
+DFA = abstractEvent -> DFA |~| SKIP
+
+DATA = { 1,2,3,4 }
+channel request:DATA
+channel result:DATA
+channel invoke:DATA
+channel return:DATA
+
+channel Client:{|request,result|}
+channel Server:{|invoke,return|}
+
+
+-- Style ClientServer
+
+-- Connector CSconnector
+    Role_Client = (|~| x:DATA @ (request!x -> result?y -> Role_Client)) |~| SKIP
+    Role_ClientA = Role_Client [[ x <- abstractEvent | x <- {|request,result|} ]]
+    assert DFA [FD= Role_ClientA
+
+    Role_Server = (invoke?x -> (|~| y:DATA @ return!y -> Role_Server)) [] SKIP
+    Role_ServerA = Role_Server [[ x <- abstractEvent | x <- {|invoke,return|} ]]
+    assert DFA [FD= Role_ServerA
+
+    Glue = (Client.request?x -> Server.invoke!x -> Server.return?y ->
+	    Client.result!y -> Glue) [] SKIP
+
+instClient = Role_Client[[ x <- Client.x | x <- {|request,result|} ]]
+instServer = Role_Server[[ x <- Server.x | x <- {|invoke,return|} ]]
+
+CSconnector = ( (instClient [| {|Client|} |]
+    (instServer [| {|Server|} |] Glue)) )
+ALPHA_CSconnector = {| Client, Server |}
+
+CSconnectorA = CSconnector [[ x <- abstractEvent | x <- ALPHA_CSconnector ]]
+assert DFA [FD= CSconnectorA

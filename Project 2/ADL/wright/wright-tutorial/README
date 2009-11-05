@@ -1,0 +1,27 @@
+This distribution is meant to be a self-contained, self-guided demonstration
+of the analysis of Wright specifications.  In this distribution, we have
+combined a paper introducing Wright with several examples from the paper that
+are mechanically checkable.  In the tutorial script included, we will explain
+how Wright specifications are checked, what the results look like, and how to
+interpret the results.
+
+
+The following files are contained in this distribution:
+
+  wright-tosem97-revision.ps   A paper containing an introduction to Wright
+                               and several small example Wright specifications.
+
+  Wright-tutorial.ps           A script that will walk the reader through a
+                               tutorial describing the analysis of Wright
+                               specifications using FDR.
+
+  *.wrt                        These are the Wright specifications from the
+                               paper encoded in an ASCII representation.
+
+  *.fdr2                       These are the same specifications after being
+                               converted to CSP.  There is one .fdr2 file for
+                               each .wrt file.
+
+The reader should first read the wright-tosem97-revision.ps paper and then
+proceed to the Wright-tutorial.ps paper.  The example specifications are 
+provided as reference material.

@@ -1,0 +1,52 @@
+-- FDR compression functions
+transparent diamond
+transparent normalise
+
+
+-- Wright defined processes
+channel abstractEvent
+DFA = abstractEvent -> DFA |~| SKIP
+
+quant_semi({},_) = SKIP
+quant_semi(S,PARAM) = |~| i:S @ PARAM(i) ; quant_semi(diff(S,{i}),PARAM)
+
+
+-- Style SharedData
+-- Type declarations
+-- events for abstract specification
+channel get, set
+
+
+-- Connector Bogus
+  -- generated definitions (to split long sets)
+  
+  ALPHA_Bogus = {|User2.get, User2.set, User1.set, User1.get|}
+  
+  Continue = ((User1.set -> Continue) [] ((User2.set -> Continue) [] ((User1.get
+         -> Continue) [] ((User2.get -> Continue) [] SKIP))))
+  Glue = ((User1.set -> Continue) [] ((User2.set -> Continue) [] SKIP))
+  
+  ALPHA_User1 = {get, set}
+  ROLEUser1 = ((set -> User1) |~| ((get -> User1) |~| SKIP))
+  User1A = ROLEUser1 [[ x <- abstractEvent | x <- ALPHA_User1 ]]
+  assert DFA [FD= User1A
+  
+  ALPHA_User2 = {get, set}
+  ROLEUser2 = ((set -> User2) |~| ((get -> User2) |~| SKIP))
+  User2A = ROLEUser2 [[ x <- abstractEvent | x <- ALPHA_User2 ]]
+  assert DFA [FD= User2A
+  
+  
+
+channel User1: {get, set}
+channel User2: {get, set}
+Bogus = ( (ROLEUser1[[ x <- User1.x | x <- {get, set } ]]
+       [| diff({|User1|}, {}) |]
+    (ROLEUser2[[ x <- User2.x | x <- {get, set } ]]
+       [| diff({|User2|}, {}) |]
+    Glue)) )
+BogusA = Bogus [[ x <- abstractEvent | x <- ALPHA_Bogus ]]
+assert DFA [FD= BogusA
+
+-- No constraints
+-- End Style
